@@ -20,21 +20,20 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  home.packages = [
-    pkgs.megasync
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+  home.packages = with pkgs; [
+    anki
+    bat
+    difftastic
+    fd
+    fzf
+    jq
+    jujutsu
+    megasync
+    ripgrep
+    signal-desktop
+    spotify
+    vscode
+    zoom-us
   ];
 
   xdg.configFile = {
@@ -93,8 +92,6 @@
     userName = "Scott Taylor";
     userEmail = "scott11x8@gmail.com";
   };
-
-  programs.jujutsu.enable = true;
 
   programs.alacritty = {
     enable = true;
