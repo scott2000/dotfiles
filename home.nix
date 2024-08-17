@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vim-jjdescription, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -39,6 +39,7 @@
 
   xdg.configFile = {
     "jj/config.toml".source = ./jjconfig.toml;
+    "nvim/init.vim".source = ./vimrc.vim;
   };
 
   home.file = {};
@@ -50,6 +51,21 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      vim-argumentative
+      vim-commentary
+      vim-indent-object
+      vim-jsx-pretty
+      vim-nix
+      vim-repeat
+      vim-surround
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "vim-jjdescription";
+        src = vim-jjdescription;
+      })
+    ];
+    viAlias = true;
+    vimAlias = true;
   };
 
   programs.fish = {
@@ -68,7 +84,6 @@
         echo -n ' $ '
       '';
       hm-switch = "home-manager switch --flake ~/dotfiles";
-      vim = "nvim $argv";
       vimdiff = "nvim -d $argv";
     };
   };
