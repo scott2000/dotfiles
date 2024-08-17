@@ -104,6 +104,8 @@ in
       userEmail = "scott11x8@gmail.com";
     };
 
+    gpg.enable = true;
+
     home-manager.enable = true;
 
     neovim = {
