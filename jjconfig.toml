@@ -28,7 +28,7 @@ difft = ["diff", "--tool=difft"]
 showt = ["show", "--tool=difft"]
 change-id = ["log", "--no-graph", "-T", "change_id", "-r"]
 rev-parse = ["log", "--no-graph", "-T", "commit_id", "-r"]
-jj = []
+advance = ["branch", "move", "--from", "heads(::@- & branches())", "--to", "@-"]
 
 [revset-aliases]
 "base(x, y)" = "latest(heads(::x & ::y))"
