@@ -5,6 +5,12 @@
   home.username = "scott";
   home.homeDirectory = "/home/scott";
 
+  dconf.settings = {
+    "org/gnome/desktop/input-sources" = {
+      xkb-options = ["caps:escape"];
+    };
+  };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
