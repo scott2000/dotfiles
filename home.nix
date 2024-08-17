@@ -45,58 +45,60 @@
 
   home.sessionVariables = {};
 
-  programs.home-manager.enable = true;
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [
-      vim-argumentative
-      vim-commentary
-      vim-indent-object
-      vim-jsx-pretty
-      vim-nix
-      vim-repeat
-      vim-surround
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "vim-jjdescription";
-        src = vim-jjdescription;
-      })
-    ];
-    viAlias = true;
-    vimAlias = true;
-  };
-
-  programs.fish = {
-    enable = true;
-    shellInit = ''
-      set -g fish_greeting
-    '';
-    interactiveShellInit = ''
-      jj util completion fish | source
-    '';
-    functions = {
-      fish_prompt = ''
-        set_color $fish_color_cwd
-        echo -n (basename $PWD)
-        set_color normal
-        echo -n ' $ '
-      '';
-      hm-switch = "home-manager switch --flake ~/dotfiles";
-      vimdiff = "nvim -d $argv";
+  programs = {
+    alacritty = {
+      enable = true;
+      settings = {
+        shell = "${pkgs.fish}/bin/fish";
+      };
     };
-  };
 
-  programs.git = {
-    enable = true;
-    userName = "Scott Taylor";
-    userEmail = "scott11x8@gmail.com";
-  };
+    fish = {
+      enable = true;
+      shellInit = ''
+        set -g fish_greeting
+      '';
+      interactiveShellInit = ''
+        jj util completion fish | source
+      '';
+      functions = {
+        fish_prompt = ''
+          set_color $fish_color_cwd
+          echo -n (basename $PWD)
+          set_color normal
+          echo -n ' $ '
+        '';
+        hm-switch = "home-manager switch --flake ~/dotfiles";
+        vimdiff = "nvim -d $argv";
+      };
+    };
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      shell = "${pkgs.fish}/bin/fish";
+    git = {
+      enable = true;
+      userName = "Scott Taylor";
+      userEmail = "scott11x8@gmail.com";
+    };
+
+    home-manager.enable = true;
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      plugins = with pkgs.vimPlugins; [
+        vim-argumentative
+        vim-commentary
+        vim-indent-object
+        vim-jsx-pretty
+        vim-nix
+        vim-repeat
+        vim-surround
+        (pkgs.vimUtils.buildVimPlugin {
+          name = "vim-jjdescription";
+          src = vim-jjdescription;
+        })
+      ];
+      viAlias = true;
+      vimAlias = true;
     };
   };
 }
