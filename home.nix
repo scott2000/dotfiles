@@ -40,16 +40,22 @@ in
   home.packages = with pkgs; [
     anki
     bat
+    clang
     difftastic
     fd
     fzf
+    ghc
     jq
     jujutsu
     megasync
+    nodejs_22
+    python3
     ripgrep
+    rustup
     signal-desktop
     spotify
     vscode
+    xclip # Required for neovim clipboard
     zoom-us
   ] ++ gnome-extensions;
 
@@ -107,6 +113,8 @@ in
     gpg.enable = true;
 
     home-manager.enable = true;
+
+    java.enable = true;
 
     neovim = {
       enable = true;
