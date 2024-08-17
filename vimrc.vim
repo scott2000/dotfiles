@@ -12,6 +12,9 @@ if has('nvim')
     nnoremap <Esc> :nohlsearch<CR>:<BS>
 endif
 
+" Use gs to sort in visual mode
+vnoremap gs :sort<CR>
+
 " Disable search highlighting with <Leader><Space> (as a backup)
 nnoremap <Leader><Space> :nohlsearch<CR>:<BS>
 

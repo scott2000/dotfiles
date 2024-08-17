@@ -1,4 +1,10 @@
 { config, pkgs, vim-jjdescription, ... }:
+let
+  vim-jjdescription-plugin = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-jjdescription";
+    src = vim-jjdescription;
+  };
+in
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -38,7 +44,6 @@
 
   xdg.configFile = {
     "jj/config.toml".source = ./jjconfig.toml;
-    "nvim/init.vim".source = ./vimrc.vim;
   };
 
   home.file = {};
@@ -94,18 +99,26 @@
       enable = true;
       defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
+        papercolor-theme
         vim-argumentative
         vim-commentary
         vim-indent-object
+        vim-javascript
+        vim-jjdescription-plugin
         vim-jsx-pretty
         vim-nix
         vim-repeat
         vim-surround
-        (pkgs.vimUtils.buildVimPlugin {
-          name = "vim-jjdescription";
-          src = vim-jjdescription;
-        })
       ];
+      extraConfig = ''
+        source ${./vimrc.vim}
+
+        " Wait to enable theme until plugins loaded
+        augroup nixinitgroup
+          autocmd!
+          autocmd VimEnter * colorscheme PaperColor
+        augroup END
+      '';
       viAlias = true;
       vimAlias = true;
     };
