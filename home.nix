@@ -53,6 +53,15 @@
       };
     };
 
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      config = {
+        hide_env_diff = true;
+        warn_timeout = "0s"; # Disable warning
+      };
+    };
+
     fish = {
       enable = true;
       shellInit = ''
