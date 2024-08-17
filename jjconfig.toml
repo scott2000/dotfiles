@@ -1,0 +1,63 @@
+[user]
+name = "Scott Taylor"
+email = "scott11x8@gmail.com"
+
+[ui]
+default-command = "log"
+pager = ["less", "-FRX"]
+diff.format = "git"
+
+[git]
+private-commits = "private()"
+
+[colors]
+"node working_copy" = { fg = "bright green", bold = true }
+"node current_operation" = { fg = "bright green", bold = true }
+"diff removed token" = { fg = "bright red", bg = "#400000", underline = false }
+"diff added token" = { fg = "bright green", bg = "#003000", underline = false }
+
+[merge-tools.difft]
+diff-args = ["--syntax-highlight=off", "--color=always", "$left", "$right"]
+
+[fix.tools.rustfmt]
+command = ["rustfmt", "+nightly", "--emit", "stdout"]
+patterns = ["glob:**/*.rs"]
+
+[aliases]
+difft = ["diff", "--tool=difft"]
+showt = ["show", "--tool=difft"]
+change-id = ["log", "--no-graph", "-T", "change_id", "-r"]
+rev-parse = ["log", "--no-graph", "-T", "commit_id", "-r"]
+jj = []
+
+[revset-aliases]
+"base(x, y)" = "latest(heads(::x & ::y))"
+"range(x, y)" = "base(x, y)::(x | y)"
+"p(n)" = "p(@, n)"
+"p(r, n)" = "roots(r | ancestors(r-, n))"
+"private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
+
+[templates]
+log_node = '''
+if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
+  "◇",
+  builtin_log_node
+)
+'''
+
+[template-aliases]
+"format_timestamp(timestamp)" = "timestamp.ago()"
+"format_detailed_signature(signature)" = """
+  if(signature.name(), signature.name(), name_placeholder)
+  ++ " <" ++ if(signature.email(), signature.email(), email_placeholder) ++ ">"
+  ++ " (" ++ signature.timestamp().local().format("%F %r") ++ ")"
+"""
+"in_branch(commit)" = 'commit.contained_in("immutable_heads()..branches()")'
+
+details = '''
+separate("\n",
+  separate(" ", change_id.shortest(8), author.email(), "[" ++ author.timestamp().ago() ++ "]", committer.timestamp().ago(), commit_id.shortest(8)),
+  coalesce(description.first_line(), description_placeholder)
+)
+'''
+
