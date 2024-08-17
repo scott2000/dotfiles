@@ -4,6 +4,9 @@ let
     name = "vim-jjdescription";
     src = vim-jjdescription;
   };
+  gnome-extensions = with pkgs.gnomeExtensions; [
+    appindicator
+  ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -11,9 +14,17 @@ in
   home.username = "scott";
   home.homeDirectory = "/home/scott";
 
-  dconf.settings = {
-    "org/gnome/desktop/input-sources" = {
-      xkb-options = ["caps:escape"];
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/input-sources" = {
+        xkb-options = ["caps:escape"];
+      };
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions =
+          builtins.map (ext: ext.extensionUuid) gnome-extensions;
+      };
     };
   };
 
@@ -40,7 +51,7 @@ in
     spotify
     vscode
     zoom-us
-  ];
+  ] ++ gnome-extensions;
 
   xdg.configFile = {
     "jj/config.toml".source = ./jjconfig.toml;
