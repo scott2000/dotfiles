@@ -98,9 +98,6 @@ in
       shellInit = ''
         set -g fish_greeting
       '';
-      interactiveShellInit = ''
-        jj util completion fish | source
-      '';
       functions = {
         fish_prompt = ''
           set_color $fish_color_cwd
