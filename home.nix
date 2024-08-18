@@ -79,6 +79,8 @@ in
       enable = true;
       settings = {
         shell = "${pkgs.fish}/bin/fish";
+        window.padding.x = 3;
+        window.padding.y = 3;
       };
     };
 
