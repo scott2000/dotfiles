@@ -41,7 +41,7 @@ in
 
   home.packages =
     (with pkgs; [
-      anki
+      anki-bin
       bat
       citrix_workspace
       clang
