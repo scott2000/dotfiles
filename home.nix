@@ -43,6 +43,7 @@ in
     (with pkgs; [
       anki
       bat
+      citrix_workspace
       clang
       difftastic
       fd
