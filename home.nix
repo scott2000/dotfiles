@@ -61,6 +61,7 @@ in
       spotify
       vscode
       xclip # Required for neovim clipboard
+      zip
       zoom-us
     ])
     ++ gnome-extensions;
