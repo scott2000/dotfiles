@@ -114,6 +114,12 @@ in
       enable = true;
       userName = "Scott Taylor";
       userEmail = "scott11x8@gmail.com";
+      ignores = [
+        "*~"
+        "*.swp"
+        ".direnv"
+        ".envrc"
+      ];
     };
 
     gpg.enable = true;
