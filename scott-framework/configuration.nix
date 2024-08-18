@@ -51,6 +51,12 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  i18n.inputMethod = {
+    enable = true;
+    type = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [ m17n ];
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
