@@ -49,6 +49,7 @@ in
       fd
       fzf
       ghc
+      gnumake
       jq
       jujutsu
       megasync
