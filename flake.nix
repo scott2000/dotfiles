@@ -17,19 +17,29 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs: {
-    nixosConfigurations.scott-framework = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        nixos-hardware.nixosModules.framework-13-7040-amd
-        ./scott-framework/configuration.nix
-      ];
-    };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos-hardware,
+      home-manager,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations.scott-framework = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nixos-hardware.nixosModules.framework-13-7040-amd
+          ./scott-framework/configuration.nix
+        ];
+      };
 
-    homeConfigurations.scott = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ ./home.nix ];
-      extraSpecialArgs = inputs;
+      homeConfigurations.scott = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./home.nix ];
+        extraSpecialArgs = inputs;
+      };
+
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
-  };
 }

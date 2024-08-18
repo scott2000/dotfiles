@@ -1,12 +1,15 @@
-{ config, pkgs, vim-jjdescription, ... }:
+{
+  config,
+  pkgs,
+  vim-jjdescription,
+  ...
+}:
 let
   vim-jjdescription-plugin = pkgs.vimUtils.buildVimPlugin {
     name = "vim-jjdescription";
     src = vim-jjdescription;
   };
-  gnome-extensions = with pkgs.gnomeExtensions; [
-    appindicator
-  ];
+  gnome-extensions = with pkgs.gnomeExtensions; [ appindicator ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -18,12 +21,11 @@ in
     enable = true;
     settings = {
       "org/gnome/desktop/input-sources" = {
-        xkb-options = ["caps:escape"];
+        xkb-options = [ "caps:escape" ];
       };
       "org/gnome/shell" = {
         disable-user-extensions = false;
-        enabled-extensions =
-          builtins.map (ext: ext.extensionUuid) gnome-extensions;
+        enabled-extensions = builtins.map (ext: ext.extensionUuid) gnome-extensions;
       };
     };
   };
@@ -37,35 +39,37 @@ in
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
-    anki
-    bat
-    clang
-    difftastic
-    fd
-    fzf
-    ghc
-    jq
-    jujutsu
-    megasync
-    nodejs_22
-    python3
-    ripgrep
-    rustup
-    signal-desktop
-    spotify
-    vscode
-    xclip # Required for neovim clipboard
-    zoom-us
-  ] ++ gnome-extensions;
+  home.packages =
+    (with pkgs; [
+      anki
+      bat
+      clang
+      difftastic
+      fd
+      fzf
+      ghc
+      jq
+      jujutsu
+      megasync
+      nodejs_22
+      python3
+      ripgrep
+      rustup
+      signal-desktop
+      spotify
+      vscode
+      xclip # Required for neovim clipboard
+      zoom-us
+    ])
+    ++ gnome-extensions;
 
   xdg.configFile = {
     "jj/config.toml".source = ./jjconfig.toml;
   };
 
-  home.file = {};
+  home.file = { };
 
-  home.sessionVariables = {};
+  home.sessionVariables = { };
 
   programs = {
     alacritty = {

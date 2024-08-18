@@ -90,8 +90,11 @@
   users.users.scott = {
     isNormalUser = true;
     description = "Scott Taylor";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = [ ];
   };
 
   # Install firefox.
