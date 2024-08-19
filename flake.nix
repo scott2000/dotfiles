@@ -8,6 +8,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Required to fix "command not found" error message being broken
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     vim-jjdescription = {
       type = "github";
       owner = "avm99963";
@@ -23,6 +28,7 @@
       nixpkgs,
       nixos-hardware,
       home-manager,
+      nix-index-database,
       ...
     }@inputs:
     {
@@ -30,13 +36,17 @@
         system = "x86_64-linux";
         modules = [
           nixos-hardware.nixosModules.framework-13-7040-amd
+          nix-index-database.nixosModules.nix-index
           ./scott-framework/configuration.nix
         ];
       };
 
       homeConfigurations.scott = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./home.nix ];
+        modules = [
+          nix-index-database.hmModules.nix-index
+          ./home.nix
+        ];
         extraSpecialArgs = inputs;
       };
 

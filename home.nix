@@ -166,5 +166,7 @@ in
       viAlias = true;
       vimAlias = true;
     };
+
+    nix-index.enable = true;
   };
 }
