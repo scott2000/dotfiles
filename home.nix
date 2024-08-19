@@ -100,7 +100,18 @@ in
       '';
       functions = {
         fish_prompt = ''
-          set_color $fish_color_cwd
+          set -l last_status $status
+          if test -n "$SHLVL" && test "$SHLVL" -gt 1
+            set_color $fish_color_param
+            echo -n "[$SHLVL] "
+          end
+          if test $last_status -eq 0
+            set_color green
+          else if test $last_status -eq 141
+            set_color yellow
+          else
+            set_color brred
+          end
           echo -n (basename $PWD)
           set_color normal
           echo -n ' $ '
