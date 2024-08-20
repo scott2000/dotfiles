@@ -13,11 +13,9 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # This plugin isn't available from nixpkgs
     vim-jjdescription = {
-      type = "github";
-      owner = "avm99963";
-      repo = "vim-jjdescription";
-      ref = "main";
+      url = "github:avm99963/vim-jjdescription/main";
       flake = false;
     };
   };
