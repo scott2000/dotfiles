@@ -61,6 +61,14 @@ in
     "jj/config.toml".source = ./jjconfig.toml;
   };
 
+  home.file = {
+    # Required to have correct cursor in Alacritty
+    ".icons/default/index.theme".text = ''
+      [icon theme] 
+      Inherits=Adwaita
+    '';
+  };
+
   programs = {
     alacritty = {
       enable = true;
