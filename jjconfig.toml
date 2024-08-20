@@ -36,6 +36,7 @@ advance = ["branch", "move", "--from", "heads(::@- & branches())", "--to", "@-"]
 "p(n)" = "p(@, n)"
 "p(r, n)" = "roots(r | ancestors(r-, n))"
 "private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
+"local_log(trunk)" = "ancestors((::p(trunk, 4)).. | @, 2)"
 
 [templates]
 log_node = '''
