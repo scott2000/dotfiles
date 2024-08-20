@@ -21,14 +21,14 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
       nixos-hardware,
       home-manager,
       nix-index-database,
       ...
-    }@inputs:
+    }:
     {
       nixosConfigurations.scott-framework = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

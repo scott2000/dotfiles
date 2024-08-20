@@ -51,6 +51,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Required for Tamil99 input method
   i18n.inputMethod = {
     enable = true;
     type = "ibus";
