@@ -157,6 +157,13 @@ in
     nix-index.enable = true;
   };
 
+  # Start megasync automatically
+  services.megasync.enable = true;
+  systemd.user.services.megasync = {
+    # Need to add sleep, otherwise it crashes
+    Service.ExecStartPre = "${pkgs.coreutils}/bin/sleep 30";
+  };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
