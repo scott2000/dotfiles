@@ -6,6 +6,7 @@ email = "scott11x8@gmail.com"
 default-command = "log"
 pager = ["less", "-FRX"]
 diff.format = "git"
+diff-editor = ":builtin"
 
 [git]
 private-commits = "private()"
@@ -20,19 +21,17 @@ private-commits = "private()"
 diff-args = ["--syntax-highlight=off", "--color=always", "$left", "$right"]
 
 [fix.tools.rustfmt]
-command = ["rustfmt", "+nightly", "--emit", "stdout"]
+command = ["rustfmt", "--emit", "stdout"]
 patterns = ["glob:**/*.rs"]
 
 [aliases]
 difft = ["diff", "--tool=difft"]
 showt = ["show", "--tool=difft"]
-change-id = ["log", "--no-graph", "-T", "change_id", "-r"]
 rev-parse = ["log", "--no-graph", "-T", "commit_id", "-r"]
 advance = ["branch", "move", "--from", "heads(::@- & branches())", "--to", "@-"]
 
 [revset-aliases]
 "base(x, y)" = "latest(heads(::x & ::y))"
-"range(x, y)" = "base(x, y)::(x | y)"
 "p(n)" = "p(@, n)"
 "p(r, n)" = "roots(r | ancestors(r-, n))"
 "private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
@@ -54,11 +53,4 @@ if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
   ++ " (" ++ signature.timestamp().local().format("%F %r") ++ ")"
 """
 "in_branch(commit)" = 'commit.contained_in("immutable_heads()..branches()")'
-
-details = '''
-separate("\n",
-  separate(" ", change_id.shortest(8), author.email(), "[" ++ author.timestamp().ago() ++ "]", committer.timestamp().ago(), commit_id.shortest(8)),
-  coalesce(description.first_line(), description_placeholder)
-)
-'''
 
