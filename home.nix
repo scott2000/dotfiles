@@ -43,6 +43,7 @@ in
       gnumake
       jq
       jujutsu
+      libreoffice
       megasync
       nodejs_22
       python3
