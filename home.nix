@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  jujutsu-latest,
   vim-jjdescription,
   ...
 }:
@@ -42,7 +43,7 @@ in
       ghc
       gnumake
       jq
-      jujutsu
+      jujutsu-latest.packages.${pkgs.system}.jujutsu
       libreoffice
       megasync
       nodejs_22

@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,9 +13,14 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Latest prerelease build, not in nixpkgs yet
+    jujutsu-latest = {
+      url = "github:martinvonz/jj";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # This plugin isn't available from nixpkgs
     vim-jjdescription = {
-      url = "github:avm99963/vim-jjdescription/main";
+      url = "github:avm99963/vim-jjdescription";
       flake = false;
     };
   };
