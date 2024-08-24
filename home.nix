@@ -36,10 +36,10 @@ in
       anki-bin
       bat
       citrix_workspace
-      clang
       difftastic
       fd
       fzf
+      gcc
       ghc
       gnumake
       jq
