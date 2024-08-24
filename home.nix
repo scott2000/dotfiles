@@ -90,6 +90,8 @@ in
       };
     };
 
+    firefox.enable = true;
+
     fish = {
       enable = true;
       shellInit = ''
