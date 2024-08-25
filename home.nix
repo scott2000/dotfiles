@@ -115,6 +115,7 @@ in
           set_color normal
           echo -n ' $ '
         '';
+        os-switch = "sudo nixos-rebuild switch --flake ~/dotfiles";
         hm-switch = "home-manager switch --flake ~/dotfiles";
         vimdiff = "nvim -d $argv";
       };
