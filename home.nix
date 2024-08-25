@@ -94,10 +94,10 @@ in
 
     fish = {
       enable = true;
-      shellInit = ''
-        set -g fish_greeting
-      '';
       functions = {
+        fish_greeting = ''
+          ${./update-reminder.fish}
+        '';
         fish_prompt = ''
           set -l last_status $status
           if test -n "$SHLVL" && test "$SHLVL" -gt 1
