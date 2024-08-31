@@ -179,8 +179,6 @@ in
       viAlias = true;
       vimAlias = true;
     };
-
-    nix-index.enable = true;
   };
 
   # Start megasync automatically
