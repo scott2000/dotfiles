@@ -143,6 +143,7 @@ in
         "*.swp"
         ".direnv"
         ".envrc"
+        "_i" # Directory for temporary files
       ];
     };
 
