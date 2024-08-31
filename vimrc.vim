@@ -151,7 +151,7 @@ augroup vimrcgroup
     autocmd!
 
     " File-specific configuration options
-    autocmd FileType haskell,c,sh,fish,python,javascript,typescript,typescriptreact,text,markdown,vim,nix setlocal
+    autocmd FileType haskell,sh,fish,javascript,typescript,typescriptreact,text,markdown,nix setlocal
       \ shiftwidth=2 tabstop=2 softtabstop=2
     autocmd BufEnter Makefile setlocal noexpandtab
 
