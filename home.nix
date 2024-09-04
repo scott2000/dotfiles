@@ -37,6 +37,7 @@ in
       bat
       citrix_workspace
       difftastic
+      discord
       fd
       fzf
       gcc
