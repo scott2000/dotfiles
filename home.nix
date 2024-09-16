@@ -127,16 +127,22 @@ in
           sudo nix-channel --update
           echo "Updating flake..."
           nix flake update ~/dotfiles
-          echo "Switching NixOS..."
           os-switch
-          echo "Switching home-manager..."
           hm-switch
           echo "Showing status..."
           cd ~/dotfiles && jj st
           echo "Remember to commit these changes!"
         '';
-        os-switch = "sudo nixos-rebuild switch --flake ~/dotfiles";
-        hm-switch = "home-manager switch --flake ~/dotfiles";
+        os-switch = ''
+          echo "Switching NixOS..."
+          sudo nixos-rebuild switch --flake ~/dotfiles
+        '';
+        hm-switch = ''
+          echo "Collecting garbage..."
+          nix-collect-garbage --delete-older-than 7d
+          echo "Switching home-manager..."
+          home-manager switch --flake ~/dotfiles
+        '';
         vimdiff = "nvim -d $argv";
       };
     };
