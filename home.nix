@@ -1,11 +1,17 @@
 {
   config,
   pkgs,
+  nixpkgs-zoom,
   jujutsu-latest,
   vim-jjdescription,
   ...
 }:
 let
+  zoom-us =
+    (import nixpkgs-zoom {
+      inherit (pkgs) system;
+      config.allowUnfree = true;
+    }).zoom-us;
   vim-jjdescription-plugin = pkgs.vimUtils.buildVimPlugin {
     name = "vim-jjdescription";
     src = vim-jjdescription;
