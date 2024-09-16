@@ -28,7 +28,7 @@ patterns = ["glob:**/*.rs"]
 difft = ["diff", "--tool=difft"]
 showt = ["show", "--tool=difft"]
 rev-parse = ["log", "--no-graph", "-T", "commit_id", "-r"]
-advance = ["branch", "move", "--from", "heads(::@- & branches())", "--to", "@-"]
+advance = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 
 [revset-aliases]
 "base(x, y)" = "latest(heads(::x & ::y))"
@@ -52,5 +52,5 @@ if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
   ++ " <" ++ if(signature.email(), signature.email(), email_placeholder) ++ ">"
   ++ " (" ++ signature.timestamp().local().format("%F %r") ++ ")"
 """
-"in_branch(commit)" = 'commit.contained_in("immutable_heads()..branches()")'
+"in_branch(commit)" = 'commit.contained_in("immutable_heads()..bookmarks()")'
 
