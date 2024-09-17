@@ -1,17 +1,12 @@
 {
   config,
   pkgs,
-  nixpkgs-zoom,
+  self,
   jujutsu-latest,
   vim-jjdescription,
   ...
 }:
 let
-  zoom-us =
-    (import nixpkgs-zoom {
-      inherit (pkgs) system;
-      config.allowUnfree = true;
-    }).zoom-us;
   vim-jjdescription-plugin = pkgs.vimUtils.buildVimPlugin {
     name = "vim-jjdescription";
     src = vim-jjdescription;
@@ -57,12 +52,12 @@ in
       python3
       ripgrep
       rustup
+      self.packages.${pkgs.system}.zoom-us-old
       signal-desktop
       spotify
       vscode
       xclip # Required for neovim clipboard
       zip
-      zoom-us
     ])
     ++ gnome-extensions;
 

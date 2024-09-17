@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-zoom.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-old.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -25,7 +25,7 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-zoom,
+      nixpkgs-old,
       nixos-hardware,
       home-manager,
       ...
@@ -44,6 +44,13 @@
         modules = [ ./home.nix ];
         extraSpecialArgs = inputs;
       };
+
+      # Old version of Zoom since new version has broken screen sharing
+      packages.x86_64-linux.zoom-us-old =
+        (import nixpkgs-old {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        }).zoom-us;
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };

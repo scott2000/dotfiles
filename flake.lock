@@ -91,7 +91,7 @@
         "type": "github"
       }
     },
-    "nixpkgs-zoom": {
+    "nixpkgs-old": {
       "locked": {
         "lastModified": 1726320982,
         "narHash": "sha256-RuVXUwcYwaUeks6h3OLrEmg14z9aFXdWppTWPMTwdQw=",
@@ -113,7 +113,7 @@
         "jujutsu-latest": "jujutsu-latest",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-zoom": "nixpkgs-zoom",
+        "nixpkgs-old": "nixpkgs-old",
         "vim-jjdescription": "vim-jjdescription"
       }
     },
