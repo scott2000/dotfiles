@@ -44,6 +44,7 @@ in
       gcc
       ghc
       gnumake
+      inkscape
       jq
       jujutsu-latest.packages.${pkgs.system}.jujutsu
       libreoffice
