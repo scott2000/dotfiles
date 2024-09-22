@@ -79,8 +79,12 @@ in
       enable = true;
       settings = {
         shell = "${pkgs.fish}/bin/fish";
-        window.padding.x = 3;
-        window.padding.y = 3;
+        window = {
+          dimensions.columns = 120;
+          dimensions.lines = 36;
+          padding.x = 3;
+          padding.y = 3;
+        };
       };
     };
 
