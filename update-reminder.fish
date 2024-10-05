@@ -7,7 +7,7 @@ end
 # Remind to update flake after 30 days
 set reminder_time (math '60 * 60 * 24 * 30')
 
-set flake_lock_revset 'latest(heads(file(root:flake.lock)))' 
+set flake_lock_revset 'latest(heads(files(root:flake.lock)))' 
 set timestamp_template  'committer.timestamp().utc().format("%s")'
 set human_readable_template 'committer.timestamp().ago()'
 
