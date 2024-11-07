@@ -9,9 +9,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Latest prerelease build, not in nixpkgs yet
+    # Use jujutsu flake to allow selecting unreleased versions easily
     jujutsu-latest = {
-      url = "github:martinvonz/jj";
+      url = "github:martinvonz/jj/v0.23.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # This plugin isn't available from nixpkgs
