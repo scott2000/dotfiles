@@ -36,7 +36,16 @@ in
     (with pkgs; [
       anki-bin
       bat
-      citrix_workspace
+      # https://github.com/NixOS/nixpkgs/issues/348868
+      (citrix_workspace.override {
+        libvorbis = libvorbis.override {
+          libogg = libogg.overrideAttrs (prevAttrs: {
+            cmakeFlags = (prevAttrs.cmakeFlags or [ ]) ++ [
+              (lib.cmakeBool "BUILD_SHARED_LIBS" true)
+            ];
+          });
+        };
+      })
       difftastic
       discord
       fd
@@ -78,7 +87,7 @@ in
     alacritty = {
       enable = true;
       settings = {
-        shell = "${pkgs.fish}/bin/fish";
+        terminal.shell = "${pkgs.fish}/bin/fish";
         window = {
           dimensions.columns = 120;
           dimensions.lines = 36;
