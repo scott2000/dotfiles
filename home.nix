@@ -132,14 +132,15 @@ in
           echo -n ' $ '
         '';
         dotfiles-update = ''
+          cd ~/dotfiles
           echo "Updating channel..."
           sudo nix-channel --update
           echo "Updating flake..."
-          nix flake update ~/dotfiles
+          nix flake update
           os-switch
           hm-switch
           echo "Showing status..."
-          cd ~/dotfiles && jj st
+          jj st
           echo "Remember to commit these changes!"
         '';
         os-switch = ''
