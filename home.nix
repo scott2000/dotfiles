@@ -24,6 +24,19 @@ let
       };
     }
   );
+  # Use new fish completions
+  jujutsu-override = jujutsu-latest.packages.${pkgs.system}.jujutsu.overrideAttrs (
+    { postInstall, ... }:
+    {
+      postInstall =
+        postInstall
+        + ''
+          installShellCompletion --cmd jj \
+            --bash <(echo 'source <(COMPLETE=bash jj)') \
+            --fish <(echo 'source (COMPLETE=fish jj | psub)')
+        '';
+    }
+  );
 in
 {
   home.username = "scott";
@@ -58,7 +71,7 @@ in
       gnumake
       inkscape
       jq
-      jujutsu-latest.packages.${pkgs.system}.jujutsu
+      jujutsu-override
       libreoffice
       megasync
       nodejs_22
