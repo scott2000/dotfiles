@@ -12,6 +12,18 @@ let
     src = vim-jjdescription;
   };
   gnome-extensions = with pkgs.gnomeExtensions; [ appindicator ];
+  # https://github.com/NixOS/nixpkgs/issues/348868
+  citrix-workspace-override = (
+    pkgs.citrix_workspace.override {
+      libvorbis = pkgs.libvorbis.override {
+        libogg = pkgs.libogg.overrideAttrs (prevAttrs: {
+          cmakeFlags = (prevAttrs.cmakeFlags or [ ]) ++ [
+            (pkgs.lib.cmakeBool "BUILD_SHARED_LIBS" true)
+          ];
+        });
+      };
+    }
+  );
 in
 {
   home.username = "scott";
@@ -36,16 +48,7 @@ in
     (with pkgs; [
       anki-bin
       bat
-      # https://github.com/NixOS/nixpkgs/issues/348868
-      (citrix_workspace.override {
-        libvorbis = libvorbis.override {
-          libogg = libogg.overrideAttrs (prevAttrs: {
-            cmakeFlags = (prevAttrs.cmakeFlags or [ ]) ++ [
-              (lib.cmakeBool "BUILD_SHARED_LIBS" true)
-            ];
-          });
-        };
-      })
+      citrix-workspace-override
       difftastic
       discord
       fd
