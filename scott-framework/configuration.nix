@@ -15,6 +15,9 @@
     options = "--delete-older-than 7d";
   };
 
+  # Enable store optimization
+  nix.settings.auto-optimise-store = true;
+
   # Framework-specific config
   services.fwupd.enable = true;
   services.power-profiles-daemon.enable = true;
