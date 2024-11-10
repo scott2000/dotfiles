@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Use jujutsu flake to allow selecting unreleased versions easily
-    jujutsu-latest.url = "github:martinvonz/jj/v0.23.0";
+    jujutsu-latest.url = "github:martinvonz/jj/main";
     # This plugin isn't available from nixpkgs
     vim-jjdescription = {
       url = "github:avm99963/vim-jjdescription";
