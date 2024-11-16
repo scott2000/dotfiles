@@ -1,0 +1,53 @@
+{
+  "vim_mode": true,
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "scroll_beyond_last_line": "off",
+  "scroll_sensitivity": 2.0,
+  "use_smartcase_search": true,
+  "inlay_hints": {
+    "enabled": false,
+    "show_other_hints": false
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Ayu Mirage"
+  },
+  "vim": {
+    "toggle_relative_line_numbers": true
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "terminal": {
+    "shell": {
+      "program": "fish"
+    },
+    "env": {
+      "SHLVL": "0"
+    }
+  },
+  "languages": {
+    "Haskell": {
+      "tab_size": 2
+    },
+    "Shell Script": {
+      "tab_size": 2
+    },
+    "JavaScript": {
+      "tab_size": 2
+    },
+    "TypeScript": {
+      "tab_size": 2
+    },
+    "Markdown": {
+      "tab_size": 2
+    },
+    "Nix": {
+      "tab_size": 2
+    }
+  }
+}

@@ -74,6 +74,7 @@ in
       jujutsu-override
       libreoffice
       megasync
+      nixd
       nodejs_22
       python3
       ripgrep
@@ -94,7 +95,7 @@ in
   home.file = {
     # Required to have correct cursor in Alacritty
     ".icons/default/index.theme".text = ''
-      [icon theme] 
+      [icon theme]
       Inherits=Adwaita
     '';
   };
@@ -218,6 +219,18 @@ in
       '';
       viAlias = true;
       vimAlias = true;
+    };
+
+    zed-editor = {
+      enable = true;
+      extensions = [
+        "html"
+        "toml"
+        "make"
+        "nix"
+      ];
+      userSettings = builtins.fromJSON (builtins.readFile ./zed/settings.json);
+      userKeymaps = builtins.fromJSON (builtins.readFile ./zed/keymap.json);
     };
   };
 
