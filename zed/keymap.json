@@ -12,10 +12,15 @@
     }
   },
   {
-    "context": "vim_mode == normal && !menu",
+    "context": "VimControl && !menu",
     "bindings": {
       "ctrl-j": "vim::PageDown",
-      "ctrl-k": "vim::PageUp",
+      "ctrl-k": "vim::PageUp"
+    }
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
       "tab": "pane::ActivateNextItem",
       "shift-tab": "pane::ActivatePrevItem",
       "+ space": ["workspace::SendKeystrokes", "escape"]

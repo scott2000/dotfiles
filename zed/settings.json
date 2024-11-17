@@ -2,6 +2,9 @@
   "vim_mode": true,
   "ui_font_size": 16,
   "buffer_font_size": 14,
+  "buffer_font_features": {
+    "calt": false
+  },
   "scroll_beyond_last_line": "off",
   "scroll_sensitivity": 2.0,
   "use_smartcase_search": true,
@@ -48,6 +51,9 @@
     },
     "Nix": {
       "tab_size": 2
+    },
+    "JSON": {
+      "format_on_save": "off"
     }
   }
 }
