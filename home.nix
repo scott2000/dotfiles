@@ -3,6 +3,7 @@
   pkgs,
   self,
   jujutsu-latest,
+  mergiraf,
   vim-jjdescription,
   ...
 }:
@@ -74,6 +75,7 @@ in
       jujutsu-override
       libreoffice
       megasync
+      mergiraf.packages.${pkgs.system}.mergiraf
       nixd
       nodejs_22
       python3
