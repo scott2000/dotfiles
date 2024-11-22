@@ -27,11 +27,12 @@ patterns = ["glob:**/*.rs"]
 [aliases]
 difft = ["diff", "--tool=difft"]
 showt = ["show", "--tool=difft"]
-rev-parse = ["log", "--no-graph", "-T", "commit_id", "-r"]
 advance = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+trunk = ["log", "-r", "::trunk()"]
+stack = ["log", "-r", "ancestors((trunk()..@)::bookmarks() | @, 2)"]
+rebase-all = ["rebase", "-s", "all:roots(mutable())", "-d", "trunk()"]
 
 [revset-aliases]
-"base(x, y)" = "latest(heads(::x & ::y))"
 "p(n)" = "p(@, n)"
 "p(r, n)" = "roots(r | ancestors(r-, n))"
 "private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'

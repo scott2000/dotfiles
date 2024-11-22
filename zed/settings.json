@@ -33,6 +33,9 @@
       "SHLVL": "0"
     }
   },
+  "tabs": {
+    "git_status": true
+  },
   "languages": {
     "Haskell": {
       "tab_size": 2
