@@ -1,9 +1,13 @@
 { config, pkgs, ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./niri.nix
+  ];
 
   # Install additional fonts
   fonts.packages = with pkgs; [
+    font-awesome
     noto-fonts
     noto-fonts-color-emoji
   ];
