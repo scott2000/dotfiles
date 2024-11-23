@@ -68,6 +68,9 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Enable niri
+  programs.niri.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -112,6 +115,13 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # These packages are required for niri
+  environment.systemPackages = with pkgs; [
+    fuzzel
+    swaylock
+    xwayland-satellite
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
