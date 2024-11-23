@@ -107,6 +107,9 @@ in
       enable = true;
       settings = {
         terminal.shell = "${pkgs.fish}/bin/fish";
+        env = {
+          SHLVL = "0";
+        };
         window = {
           dimensions.columns = 120;
           dimensions.lines = 36;
