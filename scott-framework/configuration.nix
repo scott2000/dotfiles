@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./niri.nix
+  ];
 
   # Suggested by home-manager
   nix.package = pkgs.nixVersions.stable;
@@ -53,6 +56,10 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+
+  fonts.packages = with pkgs; [
+    font-awesome
+  ];
 
   # Required for Tamil99 input method
   i18n.inputMethod = {
