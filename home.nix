@@ -13,18 +13,6 @@ let
     src = vim-jjdescription;
   };
   gnome-extensions = with pkgs.gnomeExtensions; [ appindicator ];
-  # https://github.com/NixOS/nixpkgs/issues/348868
-  citrix-workspace-override = (
-    pkgs.citrix_workspace.override {
-      libvorbis = pkgs.libvorbis.override {
-        libogg = pkgs.libogg.overrideAttrs (prevAttrs: {
-          cmakeFlags = (prevAttrs.cmakeFlags or [ ]) ++ [
-            (pkgs.lib.cmakeBool "BUILD_SHARED_LIBS" true)
-          ];
-        });
-      };
-    }
-  );
   # Use new fish completions
   jujutsu-override = jujutsu-latest.packages.${pkgs.system}.jujutsu.overrideAttrs (
     { postInstall, ... }:
@@ -62,7 +50,7 @@ in
     (with pkgs; [
       anki-bin
       bat
-      citrix-workspace-override
+      citrix_workspace
       difftastic
       discord
       fd
