@@ -170,8 +170,6 @@ in
           sudo nixos-rebuild switch --flake ~/dotfiles
         '';
         hm-switch = ''
-          echo "Collecting garbage..."
-          nix-collect-garbage --delete-older-than 7d
           echo "Switching home-manager..."
           home-manager switch --flake ~/dotfiles
         '';
