@@ -216,9 +216,10 @@ in
       enable = true;
       extensions = [
         "html"
-        "toml"
         "make"
         "nix"
+        "proto"
+        "toml"
       ];
       userSettings = builtins.fromJSON (builtins.readFile ./zed/settings.json);
       userKeymaps = builtins.fromJSON (builtins.readFile ./zed/keymap.json);
