@@ -158,6 +158,8 @@ in
           sudo nixos-rebuild switch --flake ~/dotfiles
         '';
         hm-switch = ''
+          echo "Removing old profiles..."
+          nix profile wipe-history --older-than 7d
           echo "Switching home-manager..."
           home-manager switch --flake ~/dotfiles
         '';
