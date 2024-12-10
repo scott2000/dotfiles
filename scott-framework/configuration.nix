@@ -19,7 +19,7 @@
   nix.settings.auto-optimise-store = true;
 
   # Framework-specific config
-  services.fwupd.enable = true;
+  # services.fwupd.enable = true;
   services.power-profiles-daemon.enable = true;
 
   # Bootloader
