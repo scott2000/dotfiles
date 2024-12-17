@@ -37,7 +37,7 @@ showt = ["show", "--tool=difft"]
 advance = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 trunk = ["log", "-r", "::trunk()"]
 stack = ["log", "-r", "ancestors((trunk()..@)::bookmarks() | @, 2)"]
-rebase-all = ["rebase", "-s", "all:roots(mutable())", "-d", "trunk()"]
+rebase-all = ["rebase", "-s", "all:roots(mutable() ~ ::trunk())", "-d", "trunk()"]
 
 [revset-aliases]
 "p(n)" = "p(@, n)"
