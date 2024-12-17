@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Use jujutsu flake to allow selecting unreleased versions easily
-    jujutsu-latest.url = "github:martinvonz/jj/main";
+    jujutsu-latest.url = "github:jj-vcs/jj/main";
     # Version in nixpkgs is broken right now
     mergiraf.url = "git+https://codeberg.org/mergiraf/mergiraf";
     # This plugin isn't available from nixpkgs
