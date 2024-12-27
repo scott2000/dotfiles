@@ -85,7 +85,7 @@ in
   };
 
   home.file = {
-    # Required to have correct cursor in Alacritty
+    # Required to have correct cursor in some applications
     ".icons/default/index.theme".text = ''
       [icon theme]
       Inherits=Adwaita
@@ -93,22 +93,6 @@ in
   };
 
   programs = {
-    alacritty = {
-      enable = true;
-      settings = {
-        terminal.shell = "${pkgs.fish}/bin/fish";
-        env = {
-          SHLVL = "0";
-        };
-        window = {
-          dimensions.columns = 120;
-          dimensions.lines = 36;
-          padding.x = 3;
-          padding.y = 3;
-        };
-      };
-    };
-
     direnv = {
       enable = true;
       nix-direnv.enable = true;
