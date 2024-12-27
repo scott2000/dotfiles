@@ -3,6 +3,7 @@
   pkgs,
   self,
   jujutsu-latest,
+  ghostty,
   vim-jjdescription,
   ...
 }:
@@ -56,6 +57,7 @@ in
       fzf
       gcc
       ghc
+      ghostty.packages.${pkgs.system}.ghostty
       gnumake
       inkscape
       jq
@@ -78,6 +80,7 @@ in
     ++ gnome-extensions;
 
   xdg.configFile = {
+    "ghostty/config".source = ./config/ghostty/config;
     "jj/config.toml".source = ./config/jj/config.toml;
   };
 

@@ -1,0 +1,10 @@
+background = #181818
+foreground = #d0d0d0
+command = env SHLVL=0 fish
+confirm-close-surface = false
+cursor-style = block
+cursor-style-blink = false
+font-feature = -calt
+shell-integration-features = no-cursor
+window-height = 36
+window-width = 120
