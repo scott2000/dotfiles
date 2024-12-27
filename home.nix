@@ -78,7 +78,7 @@ in
     ++ gnome-extensions;
 
   xdg.configFile = {
-    "jj/config.toml".source = ./jjconfig.toml;
+    "jj/config.toml".source = ./config/jj/config.toml;
   };
 
   home.file = {
@@ -201,7 +201,7 @@ in
         vim-surround
       ];
       extraConfig = ''
-        source ${./vimrc.vim}
+        source ${./config/nvim/init.vim}
 
         " Wait to enable theme until plugins loaded
         augroup nixinitgroup
@@ -222,8 +222,8 @@ in
         "proto"
         "toml"
       ];
-      userSettings = builtins.fromJSON (builtins.readFile ./zed/settings.json);
-      userKeymaps = builtins.fromJSON (builtins.readFile ./zed/keymap.json);
+      userSettings = builtins.fromJSON (builtins.readFile ./config/zed/settings.json);
+      userKeymaps = builtins.fromJSON (builtins.readFile ./config/zed/keymap.json);
     };
   };
 
