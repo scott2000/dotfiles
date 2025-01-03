@@ -43,7 +43,7 @@ rebase-all = ["rebase", "-s", "all:roots(mutable() ~ ::trunk())", "-d", "trunk()
 "p(n)" = "p(@, n)"
 "p(r, n)" = "roots(r | ancestors(r-, n))"
 "private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
-"local_log(trunk)" = "ancestors((::p(trunk, 4)).. | @, 2)"
+"local_log(trunk)" = "ancestors((::p(trunk, 4)).. | present(@), 2)"
 
 [templates]
 log_node = '''
