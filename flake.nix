@@ -11,8 +11,6 @@
     };
     # Use jujutsu flake to allow selecting unreleased versions easily
     jujutsu-latest.url = "github:jj-vcs/jj/main";
-    # Ghostty isn't available from nixpkgs
-    ghostty.url = "github:ghostty-org/ghostty/v1.0.0";
     # This plugin isn't available from nixpkgs
     vim-jjdescription = {
       url = "github:avm99963/vim-jjdescription";

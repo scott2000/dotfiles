@@ -3,7 +3,6 @@
   pkgs,
   self,
   jujutsu-latest,
-  ghostty,
   vim-jjdescription,
   ...
 }:
@@ -44,7 +43,6 @@ in
       fzf
       gcc
       ghc
-      ghostty.packages.${pkgs.system}.ghostty
       gnumake
       inkscape
       jq
@@ -139,6 +137,8 @@ in
         vimdiff = "nvim -d $argv";
       };
     };
+
+    ghostty.enable = true;
 
     git = {
       enable = true;
