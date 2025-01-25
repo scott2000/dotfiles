@@ -9,6 +9,8 @@ diff.format = "git"
 diff-editor = ":builtin"
 
 [git]
+# TODO: remove when this becomes the default
+subprocess = true
 private-commits = "private()"
 
 [colors]
