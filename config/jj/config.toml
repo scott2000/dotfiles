@@ -9,8 +9,6 @@ diff.format = "git"
 diff-editor = ":builtin"
 
 [git]
-# TODO: remove when this becomes the default
-subprocess = true
 private-commits = "private()"
 
 [colors]
@@ -19,26 +17,15 @@ private-commits = "private()"
 "diff removed token" = { fg = "bright red", bg = "#400000", underline = false }
 "diff added token" = { fg = "bright green", bg = "#003000", underline = false }
 
-[merge-tools.difft]
-diff-args = ["--syntax-highlight=off", "--color=always", "$left", "$right"]
-conflict-marker-style = "snapshot"
-
-[merge-tools.mergiraf]
-program = "mergiraf"
-merge-args = ["merge", "$base", "$left", "$right", "-o", "$output", "-l", "$marker_length", "--fast"]
-merge-conflict-exit-codes = [1]
-
 [fix.tools.rustfmt]
 command = ["rustfmt", "--emit", "stdout"]
 patterns = ["glob:**/*.rs"]
 
 [aliases]
-difft = ["diff", "--tool=difft"]
-showt = ["show", "--tool=difft"]
-advance = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 trunk = ["log", "-r", "::trunk()"]
 stack = ["log", "-r", "ancestors((trunk()..@)::bookmarks() | @, 2)"]
-rebase-all = ["rebase", "-s", "all:roots(mutable() ~ ::trunk())", "-d", "trunk()"]
+rebase-all = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk()"]
 
 [revset-aliases]
 "p(n)" = "p(@, n)"
