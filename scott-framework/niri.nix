@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   programs.niri.enable = true;
 
@@ -11,7 +11,7 @@
     waybar
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
-    xwayland-satellite
+    inputs.xwayland-satellite.packages.${pkgs.system}.xwayland-satellite
   ];
 
   # TODO: install niri-portals.conf

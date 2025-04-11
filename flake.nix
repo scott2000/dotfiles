@@ -16,6 +16,11 @@
       url = "github:avm99963/vim-jjdescription";
       flake = false;
     };
+    # Temporarily use branch with scaling support
+    xwayland-satellite = {
+      url = "github:Supreeeme/xwayland-satellite/force_unscaled";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -30,6 +35,7 @@
     {
       nixosConfigurations.scott-framework = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./scott-framework/configuration.nix
