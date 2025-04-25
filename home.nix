@@ -120,22 +120,17 @@ in
           sudo nix-channel --update
           echo "Updating flake..."
           nix flake update
+          echo "Switching NixOS..."
           os-switch
+          echo "Switching home-manager..."
           hm-switch
           echo "Showing status..."
           jj st
           echo "Remember to commit these changes!"
         '';
-        os-switch = ''
-          echo "Switching NixOS..."
-          sudo nixos-rebuild switch --flake ~/dotfiles
-        '';
-        hm-switch = ''
-          echo "Removing old profiles..."
-          nix profile wipe-history --older-than 7d
-          echo "Switching home-manager..."
-          home-manager switch --flake ~/dotfiles
-        '';
+        os-switch = "sudo nixos-rebuild switch --flake ~/dotfiles";
+        hm-switch = "home-manager switch --flake ~/dotfiles";
+        hm-news = "home-manager news --flake ~/dotfiles";
         vimdiff = "nvim -d $argv";
       };
     };
@@ -202,6 +197,13 @@ in
       userSettings = builtins.fromJSON (builtins.readFile ./config/zed/settings.json);
       userKeymaps = builtins.fromJSON (builtins.readFile ./config/zed/keymap.json);
     };
+  };
+
+  # Enable home-manager garbage collection
+  services.home-manager.autoExpire = {
+    enable = true;
+    frequency = "weekly";
+    timestamp = "-10 days";
   };
 
   # Start megasync automatically
