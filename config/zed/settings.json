@@ -7,6 +7,7 @@
   },
   "scroll_beyond_last_line": "off",
   "scroll_sensitivity": 2.0,
+  "show_edit_predictions": false,
   "use_smartcase_search": true,
   "inlay_hints": {
     "enabled": false,

@@ -39,10 +39,12 @@ in
       citrix_workspace
       difftastic
       discord
+      erlang
       fd
       fzf
       gcc
       ghc
+      gleam
       gnumake
       inkscape
       jq
@@ -190,6 +192,7 @@ in
     zed-editor = {
       enable = true;
       extensions = [
+        "gleam"
         "html"
         "make"
         "nix"
