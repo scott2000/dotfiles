@@ -39,6 +39,7 @@ in
       citrix_workspace
       difftastic
       discord
+      dua
       erlang
       fd
       fzf
