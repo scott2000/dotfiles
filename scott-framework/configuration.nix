@@ -2,6 +2,12 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
+  # Install additional fonts
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-color-emoji
+  ];
+
   # Suggested by home-manager
   nix.package = pkgs.nixVersions.stable;
   nix.extraOptions = ''
