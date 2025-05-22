@@ -41,6 +41,7 @@ in
       discord
       dua
       erlang
+      erlang-ls
       fd
       fzf
       gcc
@@ -188,6 +189,7 @@ in
     zed-editor = {
       enable = true;
       extensions = [
+        "erlang"
         "gleam"
         "html"
         "make"
