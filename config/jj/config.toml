@@ -10,6 +10,9 @@ pager = ["less", "-FRX"]
 diff-formatter = ":git"
 diff-editor = ":builtin"
 
+[hints]
+resolving-conflicts = false
+
 [git]
 private-commits = "private()"
 
