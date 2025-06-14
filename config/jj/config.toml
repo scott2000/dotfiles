@@ -36,7 +36,8 @@ rebase-all = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk()"]
 "p(n)" = "p(@, n)"
 "p(r, n)" = "roots(r | ancestors(r-, n))"
 "private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
-"local_log(trunk)" = "ancestors((p(trunk, 4) | immutable_heads()).. | present(@), 2)"
+# visible_heads() is required here to ensure that only visible commits are shown
+"local_log(trunk)" = "ancestors((trunk---- | immutable_heads())..visible_heads() | present(@), 2)"
 
 [templates]
 log_node = '''

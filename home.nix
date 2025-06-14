@@ -36,7 +36,6 @@ in
     (with pkgs; [
       anki-bin
       bat
-      citrix_workspace
       difftastic
       discord
       dua
@@ -59,6 +58,7 @@ in
       python3
       ripgrep
       rustup
+      self.packages.${pkgs.system}.citrix-workspace-old
       self.packages.${pkgs.system}.zoom-us-old
       signal-desktop
       spotify
