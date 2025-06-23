@@ -59,12 +59,12 @@ in
       ripgrep
       rustup
       self.packages.${pkgs.system}.citrix-workspace-old
-      self.packages.${pkgs.system}.zoom-us-old
       signal-desktop
       spotify
       vscode
       xclip # Required for neovim clipboard
       zip
+      zoom-us
     ])
     ++ gnome-extensions;
 

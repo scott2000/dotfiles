@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # TODO: update to current when Zoom screen sharing is fixed
-    nixpkgs-24_05.url = "github:NixOS/nixpkgs/nixos-24.05";
     # TODO: update to current when citrix_workspace is fixed
     nixpkgs-25_05.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -25,7 +23,6 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-24_05,
       nixpkgs-25_05,
       nixos-hardware,
       home-manager,
@@ -45,13 +42,6 @@
         modules = [ ./home.nix ];
         extraSpecialArgs = inputs;
       };
-
-      # Old version of Zoom since new version has broken screen sharing
-      packages.x86_64-linux.zoom-us-old =
-        (import nixpkgs-24_05 {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        }).zoom-us;
 
       packages.x86_64-linux.citrix-workspace-old =
         (import nixpkgs-25_05 {
