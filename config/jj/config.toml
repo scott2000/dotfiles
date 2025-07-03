@@ -33,11 +33,9 @@ stack = ["log", "-r", "ancestors((trunk()..@)::bookmarks() | @, 2)"]
 rebase-all = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk()"]
 
 [revset-aliases]
-"p(n)" = "p(@, n)"
-"p(r, n)" = "roots(r | ancestors(r-, n))"
 "private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
 # visible_heads() is required here to ensure that only visible commits are shown
-"local_log(trunk)" = "ancestors((trunk---- | immutable_heads())..visible_heads() | present(@), 2)"
+"local_log(trunk)" = "ancestors((parents(trunk, 4) | immutable_heads())..visible_heads() | present(@), 2)"
 
 [templates]
 log_node = '''

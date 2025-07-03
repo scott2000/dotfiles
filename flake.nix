@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # TODO: update to current when citrix_workspace is fixed
-    nixpkgs-25_05.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -23,7 +21,6 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-25_05,
       nixos-hardware,
       home-manager,
       ...
@@ -42,12 +39,6 @@
         modules = [ ./home.nix ];
         extraSpecialArgs = inputs;
       };
-
-      packages.x86_64-linux.citrix-workspace-old =
-        (import nixpkgs-25_05 {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        }).citrix_workspace;
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
