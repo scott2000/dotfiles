@@ -27,10 +27,10 @@ command = ["rustfmt", "--emit", "stdout"]
 patterns = ["glob:**/*.rs"]
 
 [aliases]
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "coalesce(@ ~ description(exact:''), @-)"]
 trunk = ["log", "-r", "::trunk()"]
 stack = ["log", "-r", "ancestors((trunk()..@)::bookmarks() | @, 2)"]
-rebase-all = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk()"]
+rebase-all = ["rebase", "-s", "all:roots(trunk().. & mutable())", "-d", "trunk()"]
 
 [revset-aliases]
 "private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
