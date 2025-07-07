@@ -27,12 +27,17 @@ command = ["rustfmt", "--emit", "stdout"]
 patterns = ["glob:**/*.rs"]
 
 [aliases]
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+all = ["log"]
 trunk = ["log", "-r", "::trunk()"]
-stack = ["log", "-r", "ancestors((trunk()..@)::bookmarks() | @, 2)"]
-rebase-all = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk()"]
+stack = ["log", "-r", "context(stack())"]
+work = ["log", "-r", "context(work())"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "coalesce(@ ~ description(exact:''), @-)"]
+rebase-all = ["rebase", "-s", "all:roots(trunk().. & mutable())", "-d", "trunk()"]
 
 [revset-aliases]
+"context(x)" = "trunk() | ancestors(x, 2)"
+"stack()" = "reachable(present(@), mutable())"
+"work()" = "reachable(present(@) | bookmarks(), mutable())"
 "private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
 # visible_heads() is required here to ensure that only visible commits are shown
 "local_log(trunk)" = "ancestors((parents(trunk, 4) | immutable_heads())..visible_heads() | present(@), 2)"
