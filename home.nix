@@ -14,6 +14,12 @@ let
   gnome-extensions = with pkgs.gnomeExtensions; [ appindicator ];
 in
 {
+  # TODO: remove when citrix_workspace is updated
+  nixpkgs.config.permittedInsecurePackages = [
+    "libsoup-2.74.3"
+    "libxml2-2.13.8"
+  ];
+
   home.username = "scott";
   home.homeDirectory = "/home/scott";
 
