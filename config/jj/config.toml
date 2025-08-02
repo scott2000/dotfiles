@@ -28,19 +28,28 @@ patterns = ["glob:**/*.rs"]
 
 [aliases]
 all = ["log"]
-trunk = ["log", "-r", "::trunk()"]
+trunk = ["log", "-r", "first_ancestors(trunk())"]
 stack = ["log", "-r", "context(stack())"]
 work = ["log", "-r", "context(work())"]
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "coalesce(@ ~ description(exact:''), @-)"]
-rebase-all = ["rebase", "-s", "all:roots(trunk().. & mutable())", "-d", "trunk()"]
+tug = [
+    "bookmark", "move",
+    "--from", "heads(first_ancestors(first_parent(@)) & bookmarks())",
+    "--to", "head()",
+]
+rebase-all = ["rebase", "-s", "roots(trunk().. & mutable())", "-d", "trunk()"]
 
 [revset-aliases]
 "context(x)" = "trunk() | ancestors(x, 2)"
+"head()" = "coalesce(@ ~ description(exact:''), first_parent(@))"
+"private()" = 'mutable() & description(regex:"(?i)^(private|wip)(\n*$|:)")'
 "stack()" = "reachable(present(@), mutable())"
 "work()" = "reachable(present(@) | bookmarks(), mutable())"
-"private()" = 'immutable_heads().. & description(regex:"(?i)^(private|wip)(\n*$|:)")'
+# Make commits by other users immutable
+"immutable_heads()" = "builtin_immutable_heads() | ~mine()"
 # visible_heads() is required here to ensure that only visible commits are shown
 "local_log(trunk)" = "ancestors((parents(trunk, 4) | immutable_heads())..visible_heads() | present(@), 2)"
+# Alias to quickly switch to another branch
+"/" = "latest(heads(mutable() ~ reachable(@, mutable())))"
 
 [templates]
 log_node = '''
