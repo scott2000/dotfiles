@@ -57,6 +57,7 @@ in
       inkscape
       jq
       jujutsu-latest.packages.${pkgs.system}.jujutsu
+      lean4
       libreoffice
       megasync
       mergiraf
