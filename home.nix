@@ -14,12 +14,6 @@ let
   gnome-extensions = with pkgs.gnomeExtensions; [ appindicator ];
 in
 {
-  # TODO: remove when citrix_workspace is updated
-  nixpkgs.config.permittedInsecurePackages = [
-    "libsoup-2.74.3"
-    "libxml2-2.13.8"
-  ];
-
   home.username = "scott";
   home.homeDirectory = "/home/scott";
 
@@ -42,7 +36,6 @@ in
     (with pkgs; [
       anki-bin
       bat
-      citrix_workspace
       difftastic
       discord
       dua
@@ -66,6 +59,7 @@ in
       python3
       ripgrep
       rustup
+      self.packages.${pkgs.system}.citrix-workspace-old
       signal-desktop
       spotify
       vscode
