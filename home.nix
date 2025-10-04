@@ -59,7 +59,6 @@ in
       python3
       ripgrep
       rustup
-      self.packages.${pkgs.system}.citrix-workspace-old
       signal-desktop
       spotify
       vscode
