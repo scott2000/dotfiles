@@ -117,7 +117,7 @@ in
             set_color brblack
             jj log --quiet --no-pager --color=never --ignore-working-copy \
               --no-graph -r 'present(@ & (@- & mutable())+)' \
-              -T 'parents.map(|p| "/" ++ p.change_id().shortest(3)).join("")'
+              -T 'parents.map(|p| "/" ++ p.change_id().shortest()).join("")'
           end
           set_color normal
           echo -n ' $ '

@@ -38,8 +38,13 @@ tug = [
 ]
 rebase-all = ["rebase", "-s", "roots(trunk().. & mutable())", "-d", "trunk()"]
 
+[revsets]
+log = "log()"
+short-prefixes = "log() ~ (@ & description(exact:''))"
+
 [revset-aliases]
-"context(x)" = "trunk() | ancestors(x, 2)"
+"log()" = "context(mutable())"
+"context(x)" = "@ | trunk() | ancestors(x, 2)"
 "head()" = "coalesce(@ ~ description(exact:''), first_parent(@))"
 "private()" = 'mutable() & description(regex:"(?i)^(private|wip)(\n*$|:)")'
 "stack()" = "reachable(present(@), mutable())"
@@ -52,6 +57,7 @@ rebase-all = ["rebase", "-s", "roots(trunk().. & mutable())", "-d", "trunk()"]
 "/" = "latest(heads(mutable() ~ reachable(@, mutable())))"
 
 [templates]
+git_push_bookmark = '"scott2000/" ++ change_id.short(8)'
 log_node = '''
 if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
   "◇",
