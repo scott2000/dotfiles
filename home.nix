@@ -40,7 +40,7 @@ in
       discord
       dua
       erlang
-      erlang-ls
+      erlang-language-platform
       fd
       fzf
       gcc
@@ -149,8 +149,8 @@ in
 
     git = {
       enable = true;
-      userName = "Scott Taylor";
-      userEmail = "scott11x8@gmail.com";
+      settings.user.name = "Scott Taylor";
+      settings.user.email = "scott11x8@gmail.com";
       ignores = [
         "*~"
         "*.swp"
