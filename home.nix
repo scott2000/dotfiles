@@ -138,6 +138,24 @@ in
           jj st
           echo "Remember to commit these changes!"
         '';
+        source-env = ''
+          set skip_vars PWD SHLVL history pipestatus version FISH_VERSION \
+            fish_pid hostname _ fish_private_mode PS1 XPC_SERVICE_NAME
+          while read -lz line
+            set parts (string split '=' --max 1 $line)
+            if not contains -- $parts[1] $skip_vars
+              set -gx $parts
+            end
+          end
+        '';
+        run-env = ''
+          if test -z $argv[1]
+            echo "usage: run-env <SCRIPT> [ARGS...]" >&2
+            return 1
+          end
+          bash -c 'script="$1"; shift 1; eval "$script" 1>&2 && env -0' \
+            'run-env' $argv | source-env
+        '';
         os-switch = "sudo nixos-rebuild switch --flake ~/dotfiles";
         hm-switch = "home-manager switch --flake ~/dotfiles";
         hm-news = "home-manager news --flake ~/dotfiles";
