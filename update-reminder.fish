@@ -12,14 +12,16 @@ set timestamp_template  'committer.timestamp().utc().format("%s")'
 set human_readable_template 'committer.timestamp().ago()'
 
 set last_modified_timestamp (
-  jj log -R ~/dotfiles --no-graph -r $flake_lock_revset -T $timestamp_template
+  jj --ignore-working-copy -R ~/dotfiles log \
+    --no-graph -r $flake_lock_revset -T $timestamp_template
 )
 
 set elapsed (math (date +%s) - $last_modified_timestamp)
 
 if test $elapsed -ge $reminder_time
   set human_readable_time (
-    jj log -R ~/dotfiles --no-graph -r $flake_lock_revset -T $human_readable_template
+    jj --ignore-working-copy -R ~/dotfiles --no-graph log \
+      -r $flake_lock_revset -T $human_readable_template
   )
   echo "Reminder: Last `nix flake update` for dotfiles was $human_readable_time."
 end
