@@ -62,6 +62,7 @@ in
       signal-desktop
       spotify
       vscode
+      watchexec
       xclip # Required for neovim clipboard
       zip
       zoom-us
@@ -137,6 +138,11 @@ in
           echo "Showing status..."
           jj st
           echo "Remember to commit these changes!"
+        '';
+        jj-watch = ''
+          watchexec -qrn -W (jj root)/.jj/working_copy -f checkout \
+            --clear --ignore-nothing \
+            -- jj --ignore-working-copy --no-pager $argv
         '';
         source-env = ''
           set skip_vars PWD SHLVL history pipestatus version FISH_VERSION \
