@@ -136,6 +136,7 @@ set laststatus=2        " always show status line
 set noerrorbells        " shhhh!
 " set mouse=nich        " enable the mouse, but not visual selection
 set mouse=ch            " only enable the mouse in help files
+set clipboard=unnamedplus
 
 set autoread            " re-read files if not modified
 set history=1000        " long undo history
