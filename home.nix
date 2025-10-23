@@ -115,7 +115,7 @@ in
           else
             set_color brred
           end
-          echo -n (basename $PWD)
+          echo -n -- (path basename -- $PWD)
           if test -d .jj
             set_color brblack
             jj log --quiet --no-pager --color=never --ignore-working-copy \
@@ -127,17 +127,17 @@ in
         '';
         dotfiles-update = ''
           cd ~/dotfiles
-          echo "Updating channel..."
-          sudo nix-channel --update
-          echo "Updating flake..."
-          nix flake update
-          echo "Switching NixOS..."
-          os-switch
-          echo "Switching home-manager..."
-          hm-switch
-          echo "Showing status..."
-          jj st
-          echo "Remember to commit these changes!"
+          and echo "Updating channel..."
+          and sudo nix-channel --update
+          and echo "Updating flake..."
+          and nix flake update
+          and echo "Switching NixOS..."
+          and os-switch
+          and echo "Switching home-manager..."
+          and hm-switch
+          and echo "Showing status..."
+          and jj st
+          and echo "Remember to commit these changes!"
         '';
         jj-watch = ''
           watchexec -qrn -W (jj root)/.jj/working_copy -f checkout \
@@ -149,23 +149,26 @@ in
             fish_pid hostname _ fish_private_mode PS1 XPC_SERVICE_NAME
           while read -lz line
             set parts (string split '=' --max 1 $line)
-            if not contains -- $parts[1] $skip_vars
+            if not contains -- "$parts[1]" $skip_vars
               set -gx $parts
             end
           end
         '';
         run-env = ''
-          if test -z $argv[1]
+          if test -z "$argv[1]"
             echo "usage: run-env <SCRIPT> [ARGS...]" >&2
             return 1
           end
           bash -c 'script="$1"; shift 1; eval "$script" 1>&2 && env -0' \
             'run-env' $argv | source-env
         '';
+      };
+      shellAliases = {
         os-switch = "sudo nixos-rebuild switch --flake ~/dotfiles";
         hm-switch = "home-manager switch --flake ~/dotfiles";
         hm-news = "home-manager news --flake ~/dotfiles";
-        vimdiff = "nvim -d $argv";
+        vim = "nvim";
+        vimdiff = "nvim -d";
       };
     };
 
