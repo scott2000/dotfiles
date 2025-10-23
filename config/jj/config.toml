@@ -6,7 +6,7 @@ email = "scott11x8@gmail.com"
 
 [ui]
 default-command = "log"
-pager = ["less", "-FRX"]
+pager = ["less", "-FRXx4"]
 diff-formatter = ":git"
 diff-editor = ":builtin"
 
