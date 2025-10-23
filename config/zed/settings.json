@@ -34,6 +34,7 @@
       "SHLVL": "0"
     }
   },
+  "max_tabs": 8,
   "tabs": {
     "git_status": true
   },
