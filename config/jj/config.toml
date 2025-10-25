@@ -27,10 +27,10 @@ command = ["rustfmt", "--emit", "stdout"]
 patterns = ["glob:**/*.rs"]
 
 [aliases]
-all = ["log"]
 trunk = ["log", "-r", "first_ancestors(trunk())"]
 stack = ["log", "-r", "context(stack())"]
 work = ["log", "-r", "context(work())"]
+conflict = ["new", "roots(stack() & conflicts())"]
 tug = [
     "bookmark", "move",
     "--from", "heads(first_ancestors(first_parent(@)) & bookmarks())",
