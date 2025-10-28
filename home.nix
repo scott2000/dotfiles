@@ -237,6 +237,11 @@ in
       userSettings = builtins.fromJSON (builtins.readFile ./config/zed/settings.json);
       userKeymaps = builtins.fromJSON (builtins.readFile ./config/zed/keymap.json);
     };
+
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   # Enable home-manager garbage collection
