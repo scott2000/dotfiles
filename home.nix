@@ -203,6 +203,7 @@ in
         papercolor-theme
         vim-argumentative
         vim-commentary
+        vim-easymotion
         vim-indent-object
         vim-javascript
         vim-jjdescription-plugin

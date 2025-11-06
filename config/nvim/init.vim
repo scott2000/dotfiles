@@ -1,10 +1,20 @@
 " This vimrc should work for both Vim and Neovim
 " Created by Scott Taylor
 
-let mapleader = '+'       " leader is plus
+" Trigger FZF with <C-p> (requires fzf-vim)
+nnoremap <C-p> :FZF<Cr>
+
+" Set up vim-easymotion
+let g:EasyMotion_smartcase = 1
+nnoremap S <Plug>(easymotion-s)
+nnoremap W <Plug>(easymotion-w)
+nnoremap E <Plug>(easymotion-e)
+nnoremap B <Plug>(easymotion-b)
+
+let mapleader = ' '       " leader is space
 
 " Prevent accidental triggering of default meaning for leader
-nnoremap <Leader> <Nop>
+" nnoremap <Leader> <Nop>
 
 " Plain Vim has some weird glitches if mapping <Esc>
 if has('nvim')
@@ -15,8 +25,8 @@ endif
 " Use gs to sort in visual mode
 vnoremap gs :sort<CR>
 
-" Disable search highlighting with <Leader><Space> (as a backup)
-nnoremap <Leader><Space> :nohlsearch<CR>:<BS>
+" Disable search highlighting with <Leader>+ (as a backup)
+nnoremap <Leader>+ :nohlsearch<CR>:<BS>
 
 " Disable U to prevent mistakes
 nnoremap U <Nop>
