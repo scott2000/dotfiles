@@ -44,6 +44,7 @@ in
       fd
       fzf
       gcc
+      gh
       ghc
       gleam
       gnumake
