@@ -9,6 +9,7 @@ default-command = "log"
 pager = ["less", "-FRXx4"]
 diff-formatter = ":git"
 diff-editor = ":builtin"
+conflict-marker-style = "diff-experimental"
 
 [hints]
 resolving-conflicts = false
