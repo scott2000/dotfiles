@@ -11,6 +11,9 @@ diff-formatter = ":git"
 diff-editor = ":builtin"
 conflict-marker-style = "diff-experimental"
 
+[merge]
+hunk-level = "word"
+
 [hints]
 resolving-conflicts = false
 
