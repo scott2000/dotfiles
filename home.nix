@@ -50,7 +50,7 @@ in
       gnumake
       inkscape
       jq
-      jujutsu-latest.packages.${pkgs.system}.jujutsu
+      jujutsu-latest.packages.${pkgs.stdenv.hostPlatform.system}.jujutsu
       lean4
       libreoffice
       megasync
