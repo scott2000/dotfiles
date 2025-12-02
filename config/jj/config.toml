@@ -9,7 +9,6 @@ default-command = "log"
 pager = ["less", "-FRXx4"]
 diff-formatter = ":git"
 diff-editor = ":builtin"
-conflict-marker-style = "diff-experimental"
 
 [merge]
 hunk-level = "word"
@@ -34,7 +33,8 @@ patterns = ["glob:**/*.rs"]
 trunk = ["log", "-r", "first_ancestors(trunk())"]
 stack = ["log", "-r", "context(stack())"]
 work = ["log", "-r", "context(work())"]
-conflict = ["new", "roots(stack() & conflicts())"]
+heads = ["log", "-r", "with_fork_point(@ | bookmarks() | heads(mutable() ~ private() ~ empty()))"]
+conflict = ["new", "latest(roots(coalesce(stack() & conflicts(), mutable() & conflicts())))"]
 tug = [
     "bookmark", "move",
     "--from", "heads(first_ancestors(first_parent(@)) & bookmarks())",
@@ -49,8 +49,9 @@ short-prefixes = "log() ~ (@ & description(exact:''))"
 [revset-aliases]
 "log()" = "context(mutable())"
 "context(x)" = "@ | trunk() | ancestors(x, 2)"
+"with_fork_point(x)" = "x | fork_point(x)"
 "head()" = "coalesce(@ ~ description(exact:''), first_parent(@))"
-"private()" = 'mutable() & description(regex:"(?i)^(private|wip)(\n*$|:)")'
+"private()" = 'mutable() & description(regex:"(?i)^(private|wip|todo)(\n*$|:)")'
 "stack()" = "reachable(present(@), mutable())"
 "work()" = "reachable(present(@) | bookmarks(), mutable())"
 # Make commits by other users immutable
