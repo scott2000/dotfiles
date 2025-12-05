@@ -9,6 +9,8 @@ default-command = "log"
 pager = ["less", "-FRXx4"]
 diff-formatter = ":git"
 diff-editor = ":builtin"
+# TODO: remove after this becomes the default
+revsets-use-glob-by-default = true
 
 [merge]
 hunk-level = "word"
