@@ -188,7 +188,11 @@ in
       };
     };
 
-    ghostty.enable = true;
+    ghostty = {
+      enable = true;
+      # Required to prevent home-manager from quitting ghostty
+      systemd.enable = false;
+    };
 
     git = {
       enable = true;
