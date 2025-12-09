@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   self,
   jujutsu-latest,
   vim-jjdescription,
@@ -188,7 +189,11 @@ in
       };
     };
 
-    ghostty.enable = true;
+    ghostty = {
+      enable = true;
+      # Required to prevent home-manager from quitting ghostty
+      systemd.enable = false;
+    };
 
     git = {
       enable = true;
@@ -273,6 +278,28 @@ in
   systemd.user.services.megasync = {
     # Need to add sleep, otherwise it crashes
     Service.ExecStartPre = "${pkgs.coreutils}/bin/sleep 30";
+  };
+
+  # Workaround for ghostty background (https://github.com/nix-community/home-manager/issues/8027)
+  systemd.user.services."app-com.mitchellh.ghostty" = {
+    Unit = {
+      Description = "Ghostty";
+      After = [
+        "graphical-session.target"
+        "dbus.socket"
+      ];
+      Requires = "dbus.socket";
+      X-RestartIfChanged = false;
+    };
+    Service = {
+      Type = "dbus";
+      BusName = "com.mitchellh.ghostty";
+      ReloadSignal = "SIGUSR2";
+      ExecStart = "${lib.getExe config.programs.ghostty.package} --gtk-single-instance=true --initial-window=false";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
   };
 
   # This value determines the Home Manager release that your configuration is
