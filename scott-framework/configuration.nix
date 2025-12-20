@@ -4,6 +4,7 @@
 
   # Install additional fonts
   fonts.packages = with pkgs; [
+    fira-code
     noto-fonts
     noto-fonts-color-emoji
   ];
