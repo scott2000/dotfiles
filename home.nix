@@ -187,6 +187,9 @@ in
         vim = "nvim";
         vimdiff = "nvim -d";
       };
+      interactiveShellInit = ''
+        set fish_color_command blue
+      '';
     };
 
     ghostty = {
