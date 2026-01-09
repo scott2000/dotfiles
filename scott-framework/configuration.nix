@@ -11,9 +11,14 @@
 
   # Suggested by home-manager
   nix.package = pkgs.nixVersions.stable;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  nix.settings.experimental-features = "nix-command flakes";
+
+  # Use tmpfs for /tmp and build nix packages in a different directory
+  boot.tmp.useTmpfs = true;
+  nix.settings.build-dir = "/nix/tmp";
+  systemd.tmpfiles.rules = [
+    "d /nix/tmp 770 root nixbld"
+  ];
 
   # Enable garbage collection
   nix.gc = {

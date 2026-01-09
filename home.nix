@@ -182,7 +182,7 @@ in
       };
       shellAliases = {
         os-switch = "sudo nixos-rebuild switch --flake ~/dotfiles";
-        hm-switch = "home-manager switch --flake ~/dotfiles";
+        hm-switch = "TMPDIR=/var/tmp home-manager switch --flake ~/dotfiles";
         hm-news = "home-manager news --flake ~/dotfiles";
         vim = "nvim";
         vimdiff = "nvim -d";
