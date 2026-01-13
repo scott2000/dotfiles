@@ -4,14 +4,21 @@
   lib,
   self,
   jujutsu-latest,
-  vim-jjdescription,
+  vim-jjdescription-src,
+  jj-analyze-src,
   ...
 }:
 let
-  vim-jjdescription-plugin = pkgs.vimUtils.buildVimPlugin {
+  vim-jjdescription = pkgs.vimUtils.buildVimPlugin {
     name = "vim-jjdescription";
-    src = vim-jjdescription;
+    src = vim-jjdescription-src;
   };
+  jj-analyze = pkgs.rustPlatform.buildRustPackage (finalAttrs: {
+    pname = "jj-analyze";
+    version = "0.2.0";
+    src = jj-analyze-src;
+    cargoHash = "sha256-fvGudCpth45UoE9JpvxE1rk/xKgu0jxIgl00ML0Y8Js=";
+  });
   gnome-extensions = with pkgs.gnomeExtensions; [ appindicator ];
 in
 {
@@ -50,6 +57,7 @@ in
       gleam
       gnumake
       inkscape
+      jj-analyze
       jq
       jujutsu-latest.packages.${pkgs.stdenv.hostPlatform.system}.jujutsu
       lean4
@@ -189,6 +197,9 @@ in
       };
       interactiveShellInit = ''
         set fish_color_command blue
+
+        # jj-analyze completions
+        COMPLETE=fish jj-analyze | source
       '';
     };
 
@@ -229,7 +240,7 @@ in
         vim-easymotion
         vim-indent-object
         vim-javascript
-        vim-jjdescription-plugin
+        vim-jjdescription
         vim-jsx-pretty
         vim-nix
         vim-repeat

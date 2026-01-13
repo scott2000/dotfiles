@@ -38,6 +38,23 @@
         "type": "github"
       }
     },
+    "jj-analyze-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768612933,
+        "narHash": "sha256-m0PyOJ84UNzTk2/7z4G3I0h9fZVuwz5pi2kLmnTDUKI=",
+        "owner": "scott2000",
+        "repo": "jj-analyze",
+        "rev": "d995eddc281a2296102572a2699ef8a5eb130807",
+        "type": "github"
+      },
+      "original": {
+        "owner": "scott2000",
+        "ref": "jj-0.38.0",
+        "repo": "jj-analyze",
+        "type": "github"
+      }
+    },
     "jujutsu-latest": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -109,10 +126,11 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "jj-analyze-src": "jj-analyze-src",
         "jujutsu-latest": "jujutsu-latest",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "vim-jjdescription": "vim-jjdescription"
+        "vim-jjdescription-src": "vim-jjdescription-src"
       }
     },
     "rust-overlay": {
@@ -151,7 +169,7 @@
         "type": "github"
       }
     },
-    "vim-jjdescription": {
+    "vim-jjdescription-src": {
       "flake": false,
       "locked": {
         "lastModified": 1746728970,
