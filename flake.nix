@@ -17,7 +17,7 @@
     };
     # I haven't added a flake for this yet
     jj-analyze-src = {
-      url = "github:scott2000/jj-analyze/jj-0.38.0";
+      url = "github:scott2000/jj-analyze";
       flake = false;
     };
   };

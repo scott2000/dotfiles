@@ -35,16 +35,12 @@ stack = ["log", "-r", "context(stack())"]
 work = ["log", "-r", "context(work())"]
 heads = ["log", "-r", "with_fork_point(@ | bookmarks() | heads(mutable() ~ private() ~ empty()))"]
 conflict = ["new", "latest(roots(coalesce(stack() & conflicts(), mutable() & conflicts())))"]
-tug = [
-    "bookmark", "move",
-    "--from", "heads(first_ancestors(first_parent(@)) & bookmarks())",
-    "--to", "head()",
-]
 rebase-all = ["rebase", "-s", "roots(trunk().. & mutable())", "-d", "trunk()"]
 
 [revsets]
 log = "log()"
 short-prefixes = "log() ~ (@ & description(''))"
+bookmark-advance-to = "head()"
 
 [revset-aliases]
 "log()" = "context(mutable())"
@@ -58,8 +54,10 @@ short-prefixes = "log() ~ (@ & description(''))"
 "immutable_heads()" = "builtin_immutable_heads() | ~mine()"
 # visible_heads() is required here to ensure that only visible commits are shown
 "local_log(trunk)" = "ancestors((parents(trunk, 4) | immutable_heads())..visible_heads() | present(@), 2)"
-# Alias to quickly switch to another branch
-"/" = "latest(heads(mutable() ~ reachable(@, mutable())))"
+"back()" = "latest(heads(mutable() ~ reachable(@, mutable())))"
+"/" = "first_parent(@)"
+# Alias for searching commits quickly
+"/:x" = "::trunk() & diff_lines(regex:x)"
 
 [templates]
 git_push_bookmark = '"scott2000/" ++ change_id.short(8)'
