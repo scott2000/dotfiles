@@ -13,6 +13,12 @@ let
     name = "vim-jjdescription";
     src = vim-jjdescription-src;
   };
+  jujutsu =
+    jujutsu-latest.packages.${pkgs.stdenv.hostPlatform.system}.jujutsu.overrideAttrs
+      (oldAttrs: {
+        # The tests take a long time to run, so it's better to skip them.
+        doCheck = false;
+      });
   jj-analyze = pkgs.rustPlatform.buildRustPackage (finalAttrs: {
     pname = "jj-analyze";
     version = "0.4.0";
@@ -59,7 +65,7 @@ in
       inkscape
       jj-analyze
       jq
-      jujutsu-latest.packages.${pkgs.stdenv.hostPlatform.system}.jujutsu
+      jujutsu
       lean4
       libreoffice
       megasync
