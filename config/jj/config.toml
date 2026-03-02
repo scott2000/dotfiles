@@ -39,12 +39,12 @@ rebase-all = ["rebase", "-s", "roots(trunk().. & mutable())", "-d", "trunk()"]
 
 [revsets]
 log = "log()"
-short-prefixes = "log() ~ (@ & description(''))"
+short-prefixes = "log() ~ (present(@) & description(''))"
 bookmark-advance-to = "head()"
 
 [revset-aliases]
 "log()" = "context(mutable())"
-"context(x)" = "@ | trunk() | ancestors(x, 2)"
+"context(x)" = "present(@) | trunk() | ancestors(x, 2)"
 "with_fork_point(x)" = "x | fork_point(x)"
 "head()" = "coalesce(@ ~ description(''), first_parent(@))"
 "private()" = 'mutable() & description(regex:"(?i)^(private|wip|todo)(\n*$|:)")'
