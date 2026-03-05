@@ -119,6 +119,34 @@ in
         fish_greeting = ''
           ${./update-reminder.fish}
         '';
+        fish_mode_prompt = ''
+          switch $fish_bind_mode
+            case default
+              set_color --bold red
+              echo '[NORMAL]'
+            case insert
+              if not set -gq vim_mode_prompt_used
+                return
+              end
+              set_color --bold green
+              echo '[INSERT]'
+            case replace_one
+              set_color --bold green
+              echo '[REPLACE]'
+            case replace
+              set_color --bold cyan
+              echo '[REPLACE]'
+            case visual
+              set_color --bold magenta
+              echo '[VISUAL]'
+            case operator
+              set_color --bold cyan
+              echo '[NORMAL]'
+          end
+          set -g vim_mode_prompt_used
+          set_color normal
+          echo -n ' '
+        '';
         fish_prompt = ''
           set -l last_status $status
           if test -n "$SHLVL" && test "$SHLVL" -gt 1
@@ -141,6 +169,10 @@ in
           end
           set_color normal
           echo -n ' $ '
+        '';
+        fish_user_key_bindings = ''
+          fish_default_key_bindings -M insert
+          fish_vi_key_bindings --no-erase insert
         '';
         dotfiles-update = ''
           cd ~/dotfiles
@@ -203,9 +235,15 @@ in
       };
       interactiveShellInit = ''
         set fish_color_command blue
+        set fish_cursor_insert block
 
         # jj-analyze completions
         COMPLETE=fish jj-analyze | source
+
+        # Reset vim mode on prompt
+        function vim_mode_reset_on_exec --on-event fish_prompt
+          set -ge vim_mode_prompt_used
+        end
       '';
     };
 
