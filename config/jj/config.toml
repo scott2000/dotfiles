@@ -60,8 +60,8 @@ bookmark-advance-to = "head()"
 "immutable_heads()" = "builtin_immutable_heads() | ~mine()"
 # visible_heads() is required here to ensure that only visible commits are shown
 "local_log(trunk)" = "ancestors((parents(trunk, 4) | immutable_heads())..visible_heads() | present(@), 2)"
-# Easily refer to first parent
-"/" = "first_parent(@)"
+# Easily refer to trunk()
+"/" = "trunk()"
 # Alias for searching commits quickly
 "/:x" = "::trunk() & diff_lines(regex:x)"
 
