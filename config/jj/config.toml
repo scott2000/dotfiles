@@ -9,6 +9,7 @@ default-command = "log"
 pager = ["less", "-FRXx4"]
 diff-formatter = ":git"
 diff-editor = ":builtin"
+log-synthetic-elided-nodes = false
 
 [merge]
 hunk-level = "word"
@@ -32,12 +33,11 @@ patterns = ["glob:**/*.rs"]
 [aliases]
 trunk = ["log", "-r", "first_ancestors(trunk())"]
 stack = ["log", "-r", "context(stack())"]
-work = ["log", "-r", "context(work())"]
+work = ["log", "-r", "work()"]
 heads = ["log", "-r", "with_fork_point(@ | bookmarks() | heads(mutable() ~ private() ~ empty()))"]
 conflict = ["new", "latest(roots(coalesce(stack() & conflicts(), mutable() & conflicts())))"]
 rebase-all = ["rebase", "-s", "roots(trunk().. & mutable())", "-o", "trunk()"]
 rebase-local = ["rebase", "-s", "roots(trunk()..) & local()", "-o", "trunk()"]
-switch = ["rebase", "-r", "@"]
 note = ["new", "trunk()", "--no-edit", "-m"]
 
 [revsets]
@@ -52,7 +52,7 @@ bookmark-advance-to = "head()"
 "head()" = "coalesce(@ ~ description(''), first_parent(@))"
 "private()" = 'mutable() & description(regex:"(?i)^(private|wip|todo)(\n*$|:)")'
 "stack()" = "reachable(present(@), mutable())"
-"work()" = "reachable(present(@) | bookmarks(), mutable())"
+"work()" = "context(reachable(present(@) | bookmarks(), mutable())) | bookmarks()"
 "local()" = "(untracked_remote_bookmarks() | bookmarks() | tags()).."
 "back()" = "latest(heads(mutable() ~ reachable(@, mutable())))"
 "tip()" = "heads(reachable(@, mutable() ~ private()) ~ @)"
@@ -64,6 +64,15 @@ bookmark-advance-to = "head()"
 "/" = "trunk()"
 # Alias for searching commits quickly
 "/:x" = "::trunk() & diff_lines(regex:x)"
+# Alias to easily add note when abandoning commits
+"note:x" = "none()"
+
+[fileset-aliases]
+LOCK = "'**/*.{lock,sum}' | **/*-lock.*"
+DOC = "'**/*.{txt,md,mdx}'"
+TEST = "('**/*{.,_}test.*' | '**/test{.,_}*' | '**/{test,tests}/**' | '**/*.{test,snap,feature}') ~ (LOCK | DOC)"
+CONF = "('**/*.{json,csv,yaml,yml,toml,mod,conf}' | **/*.config.* | glob:**/*file | **/.*) ~ (LOCK | DOC | TEST)"
+SRC = "~(LOCK | DOC | TEST | CONF)"
 
 [templates]
 git_push_bookmark = '"scott2000/" ++ change_id.short(8)'
