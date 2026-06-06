@@ -22,7 +22,7 @@
     "context": "vim_mode == normal && !menu",
     "bindings": {
       "tab": "pane::ActivateNextItem",
-      "shift-tab": "pane::ActivatePrevItem",
+      "shift-tab": "pane::ActivatePreviousItem",
       "+ space": ["workspace::SendKeystrokes", "escape"]
     }
   }
