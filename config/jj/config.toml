@@ -1,8 +1,8 @@
 #:schema https://docs.jj-vcs.dev/prerelease/config-schema.json
 
 [user]
-name = "Scott Taylor"
-email = "scott11x8@gmail.com"
+name = "Scott Sudharsan"
+email = "scott.sudharsan@gmail.com"
 
 [ui]
 default-command = "log"
@@ -66,6 +66,14 @@ bookmark-advance-to = "head()"
 "/:x" = "::trunk() & diff_lines(regex:x)"
 # Alias to easily add note when abandoning commits
 "note:x" = "none()"
+# Include old emails for "mine()"
+"mine()" = """
+  author_email(
+    exact-i:"scott.sudharsan@gmail.com"
+    | exact-i:"scott.g.taylor@jpmchase.com"
+    | exact-i:"scott11x8@gmail.com"
+    | exact-i:"scottipod2000@gmail.com")
+"""
 
 [fileset-aliases]
 LOCK = "'**/*.{lock,sum}' | **/*-lock.*"

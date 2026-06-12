@@ -255,8 +255,8 @@ in
 
     git = {
       enable = true;
-      settings.user.name = "Scott Taylor";
-      settings.user.email = "scott11x8@gmail.com";
+      settings.user.name = "Scott Sudharsan";
+      settings.user.email = "scott.sudharsan@gmail.com";
       ignores = [
         "*~"
         "*.swp"
