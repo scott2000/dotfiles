@@ -62,6 +62,7 @@ in
       ghc
       gleam
       gnumake
+      hyperfine
       inkscape
       jj-analyze
       jq

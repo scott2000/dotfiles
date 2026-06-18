@@ -44,6 +44,7 @@ note = ["new", "trunk()", "--no-edit", "-m"]
 log = "log()"
 short-prefixes = "log() ~ (present(@) & description(''))"
 bookmark-advance-to = "head()"
+run = "reachable(@, mutable()) & (merges() | ~empty())"
 
 [revset-aliases]
 "log()" = "context(mutable())"
@@ -66,6 +67,8 @@ bookmark-advance-to = "head()"
 "/:x" = "::trunk() & diff_lines(regex:x)"
 # Alias to easily add note when abandoning commits
 "note:x" = "none()"
+# Efficiently search for commits since a given date
+"since:x" = "committer_date(before:x).."
 # Include old emails for "mine()"
 "mine()" = """
   author_email(
