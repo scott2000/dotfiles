@@ -21,9 +21,9 @@ let
       });
   jj-analyze = pkgs.rustPlatform.buildRustPackage (finalAttrs: {
     pname = "jj-analyze";
-    version = "0.4.0";
+    version = "0.5.0";
     src = jj-analyze-src;
-    cargoHash = "sha256-LUN2m7SXj5fU6KtTdRmRXdk/ZYkMSu36b4KLqHFk8ms=";
+    cargoHash = "sha256-l0zewnnjdZFIEvvfQSjpkLLoN9o7OpDPzF7SQVGwIGU=";
   });
   gnome-extensions = with pkgs.gnomeExtensions; [ appindicator ];
 in
@@ -50,10 +50,10 @@ in
     (with pkgs; [
       anki-bin
       bat
+      beamPackages.erlang
       difftastic
       discord
       dua
-      erlang
       erlang-language-platform
       fd
       fzf
