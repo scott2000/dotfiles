@@ -211,19 +211,12 @@ in
           bash -c 'script="$1"; shift 1; eval "$script" 1>&2 && env -0' \
             'run-env' $argv | source-env
         '';
-        # From https://unix.stackexchange.com/a/681218
-        reset-bluetooth = ''
-          set -lx reset_device "$(lsusb -v -s1:1 2>/dev/null | rg iSerial | rg -o '0000(:[0-9a-f]{2}){2}\.[0-9]+$')"
-          echo "Resetting device: $reset_device"
-          sleep 3
-          sudo sh -c '
-            echo "Unbinding..." &&
-            echo -n "$reset_device" >| /sys/bus/pci/drivers/xhci_hcd/unbind &&
-            echo "Waiting..." &&
-            sleep 3 &&
-            echo "Rebinding..." &&
-            echo -n "$reset_device" >| /sys/bus/pci/drivers/xhci_hcd/bind
-          '
+        who-jj = ''
+          git log --all --pretty=raw |
+            rg -B1 '^(change-id|jj:)' |
+            rg -o '^committer [^>]*>' |
+            sed 's/^committer //' |
+            sort -u
         '';
       };
       shellAliases = {
