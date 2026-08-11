@@ -9,7 +9,7 @@ default-command = "log"
 pager = ["less", "-FRXx4"]
 diff-formatter = ":git"
 diff-editor = ":builtin"
-log-synthetic-elided-nodes = false
+log-synthetic-elided-nodes = true
 
 [merge]
 hunk-level = "word"
