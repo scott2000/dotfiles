@@ -219,12 +219,16 @@ in
             sed 's/^committer //' |
             sort -u
         '';
+        vim = ''
+          echo "Use 'hx' instead of 'vim'! Press enter to continue."
+          read
+          hx $argv
+        '';
       };
       shellAliases = {
         os-switch = "sudo nixos-rebuild switch --flake ~/dotfiles";
         hm-switch = "TMPDIR=/var/tmp home-manager switch --flake ~/dotfiles";
         hm-news = "home-manager news --flake ~/dotfiles";
-        vim = "nvim";
         vimdiff = "nvim -d";
       };
       interactiveShellInit = ''
@@ -264,13 +268,31 @@ in
 
     gpg.enable = true;
 
+    helix = {
+      enable = true;
+      defaultEditor = true;
+      settings = {
+        theme = "papercolor-dark";
+        editor.default-yank-register = "+";
+        editor.cursor-shape.insert = "bar";
+        keys.normal = {
+          "C-k" = "page_cursor_half_up";
+          "C-j" = "page_cursor_half_down";
+          "esc" = [
+            "collapse_selection"
+            "keep_primary_selection"
+          ];
+        };
+      };
+    };
+
     home-manager.enable = true;
 
     java.enable = true;
 
     neovim = {
       enable = true;
-      defaultEditor = true;
+      # defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
         papercolor-theme
         vim-argumentative
