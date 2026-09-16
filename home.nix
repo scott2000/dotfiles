@@ -67,7 +67,6 @@ in
       jj-analyze
       jq
       jujutsu
-      lean4
       libreoffice
       megasync
       mergiraf
