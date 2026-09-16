@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  self,
   jujutsu-latest,
   vim-jjdescription-src,
   jj-analyze-src,
@@ -39,7 +38,7 @@ in
       };
       "org/gnome/shell" = {
         disable-user-extensions = false;
-        enabled-extensions = builtins.map (ext: ext.extensionUuid) gnome-extensions;
+        enabled-extensions = map (ext: ext.extensionUuid) gnome-extensions;
       };
     };
   };
