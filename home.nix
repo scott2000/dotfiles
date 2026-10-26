@@ -48,6 +48,7 @@ in
   home.packages =
     (with pkgs; [
       anki-bin
+      awscli2
       bat
       beamPackages.erlang
       difftastic

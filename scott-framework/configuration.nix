@@ -142,6 +142,12 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # Enable docker
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
