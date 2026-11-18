@@ -20,9 +20,9 @@ let
       });
   jj-analyze = pkgs.rustPlatform.buildRustPackage (finalAttrs: {
     pname = "jj-analyze";
-    version = "0.5.0";
+    version = "0.6.0";
     src = jj-analyze-src;
-    cargoHash = "sha256-l0zewnnjdZFIEvvfQSjpkLLoN9o7OpDPzF7SQVGwIGU=";
+    cargoHash = "sha256-pt5rE14ShawoGMoTKffs5RxaRMaJITYmKxCe73BMMng=";
   });
   gnome-extensions = with pkgs.gnomeExtensions; [ appindicator ];
 in
